@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import './App.css';
 import ZipForm from './ZipForm';
+import WeatherList from './WeatherList';
 import get from 'axios';
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
       <div className="App">
         This is my weather app. we'll use {this.url} for getting weather data.
        <ZipForm onSubmit={this.onFormSubmit} />
+       <WeatherList days = {this.state.dates} city={this.state.city.name} />
       </div>
 
     );

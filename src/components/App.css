@@ -6,7 +6,12 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.flex-parent>h1{
+  flex:0 1 100%;
+  text-align: center;
+  
 
+}
 body {
   background: #1db3f9;
   padding: 20px;
