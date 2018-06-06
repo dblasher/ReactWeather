@@ -3,6 +3,7 @@ import logo from '../logo.svg';
 import './App.css';
 import ZipForm from './ZipForm';
 import WeatherList from './WeatherList';
+import CurrentDay from './CurrentDay';
 import get from 'axios';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
     this.apikey = "&units=imperial&appid=4319ff27021579d6c2adf5fc9c83b5eb";
 
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onDayClick = this.onDayClick.bind(this);
 
   }//end of constructor
 
@@ -32,13 +34,20 @@ class App extends Component {
         alert(error);
       })
   }
+  
+  onDayClick(index){
+    let clickedDay = this.state.dates[index];
+    this.setState({selectedDate: clickedDay});
+  }
 
   render() {
+    let day = (this.state.selectedDate != null) ? <CurrentDay day = {this.state.selectedDate} city = {this.state.city}/> : "";
     return (
       <div className="App">
         This is my weather app. we'll use {this.url} for getting weather data.
        <ZipForm onSubmit={this.onFormSubmit} />
-       <WeatherList days = {this.state.dates} city={this.state.city.name} />
+       <WeatherList days = {this.state.dates} city={this.state.city.name} onDayClick={this.onDayClick} />
+       {day}
       </div>
 
     );
